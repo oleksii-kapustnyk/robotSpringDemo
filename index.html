@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<body>
+<div>post title: <span id="spanId"></span></div>
+<script type="text/javascript">
+    var apiUrl = 'http://localhost:8080/test';
+    function httpGet(theUrl) {
+        let xmlHttpReq = new XMLHttpRequest();
+
+        xmlHttpReq.open("GET", theUrl, false);
+        xmlHttpReq.send(null);
+        return xmlHttpReq.responseText;
+    }
+    document.getElementById("spanId").innerText = httpGet(apiUrl);
+</script>
+</body>
+</html>
