@@ -3,6 +3,8 @@ package com.ua.robot.rest;
 import com.ua.robot.domain.Student;
 import com.ua.robot.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +17,8 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("/students")
-    public List<Student> findAll() {
-        return studentService.findAll();
+    public ResponseEntity<List<Student>> findAll() {
+        return ResponseEntity.ok(studentService.findAll());
     }
 
     @GetMapping("/students/{id}")
@@ -25,8 +27,15 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public void save(@RequestBody Student student) {
+    public ResponseEntity<Void> save(@RequestBody Student student) {
         studentService.save(student);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/students/{id}")
+    public void deleteById(@PathVariable Long id) {
+
     }
 
 
