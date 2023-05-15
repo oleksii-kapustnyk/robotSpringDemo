@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,8 +21,24 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    public Optional<Student> findById(@PathVariable Long id) {
-        return studentService.findById(id);
+    public ResponseEntity<Student> findById(@PathVariable Long id) {
+        return studentService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/students/name/{name}")
+    public ResponseEntity<Student> findByName(@PathVariable String name) {
+        return studentService.findByName(name)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/students/find")
+    public ResponseEntity<Student> findByParam(@RequestParam String name, @RequestParam int age) {
+        return studentService.findByName(name)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/students")

@@ -1,6 +1,8 @@
 package com.ua.robot.service;
 
 import com.ua.robot.domain.Student;
+import com.ua.robot.repository.StudentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -8,23 +10,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
 
+    private final StudentRepository studentRepository;
 
     public List<Student> findAll() {
-        return List.of(
-                new Student("John", 20, "London"),
-                new Student("Jane", 21, "New York"),
-                new Student("Jack", 22, "Paris"),
-                new Student("Jill", 23, "Berlin")
-        );
+        return studentRepository.findAll();
     }
 
     public Optional<Student> findById(Long id) {
-        return Optional.of(new Student("John", 20, "London"));
+        return studentRepository.findById(id);
+    }
+
+    public Optional<Student> findByName(String name) {
+        return studentRepository.findStudentByName(name);
     }
 
     public void save(Student student) {
-        System.out.println(student);
+        studentRepository.save(student);
     }
 }
