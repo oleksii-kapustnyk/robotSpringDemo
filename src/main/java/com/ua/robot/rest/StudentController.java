@@ -3,6 +3,7 @@ package com.ua.robot.rest;
 import com.ua.robot.domain.Student;
 import com.ua.robot.dto.StudentDto;
 import com.ua.robot.service.StudentService;
+import io.swagger.v3.oas.models.annotations.OpenAPI30;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
