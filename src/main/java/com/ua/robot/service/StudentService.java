@@ -39,8 +39,8 @@ public class StudentService {
                 .build();
     }
 
-    public Optional<Student> findById(Long id) {
-        return studentRepository.findById(id);
+    public Optional<StudentDto> findById(Long id) {
+        return studentRepository.findById(id).map(StudentService::buildStudentDto);
     }
 
     public Optional<Student> findByName(String name) {

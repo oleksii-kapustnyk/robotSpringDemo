@@ -23,7 +23,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> findById(@PathVariable Long id) {
+    public ResponseEntity<StudentDto> findById(@PathVariable Long id) {
         return studentService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

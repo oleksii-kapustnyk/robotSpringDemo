@@ -3,10 +3,12 @@ package com.ua.robot.service;
 import com.ua.robot.domain.Student;
 import com.ua.robot.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CalculatorService {
